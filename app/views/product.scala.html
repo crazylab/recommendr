@@ -1,0 +1,25 @@
+@(product : Product, recProducts: Seq[Product], profileBasedRec:Seq[Product])(implicit session: Session)
+
+
+@main(product.brand, session.get("userId").getOrElse("")) {
+
+    <div class="product-detail col-md-12">
+        <div class="col-md-4">
+            <img src="/assets/img/@{product.product_id}.jpg"/>
+        </div>
+        <div class="col-md-8">
+            <div class="lead">@product.brand</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <br/>
+        <div class="lead bg-info">Customers who bought this also bought</div>
+    </div>
+    @productGrid(recProducts.map(x=>(x.product_id, x.brand, "")))
+    <div class="col-md-12">
+        <br/> <br/>
+        <div class="lead bg-info">Product Profile based recommendations</div>
+    </div>
+    @productGrid(profileBasedRec.map(x=>(x.product_id, x.brand, "")))
+
+}

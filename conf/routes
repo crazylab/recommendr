@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                controllers.Application.index(userId:Option[Int])
+GET         /logout                          controllers.Application.logout
+GET         /orders                          controllers.Application.orders
+GET         /context                         controllers.Application.context
+GET         /factors                         controllers.Application.factors
+GET         /similarUsers                    controllers.Application.similarUsers
+POST        /factors                         controllers.Application.factorsSave
+GET         /view/products/:pid              controllers.Application.productView(pid: Int)
+GET         /view/user/:uid                  controllers.Application.userView(uid:Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                    controllers.Assets.at(path="/public", file)
+
+POST        /updateScore                     controllers.NonPersonalizedReco.triggerUpdate
+POST        /resetScore                      controllers.NonPersonalizedReco.triggerReset
+
+POST        /reco/personalized/update        controllers.PersonalizedReco.triggerUpdate
+GET         /reco/products                   controllers.PersonalizedReco.productRecommendation(userId:Option[Int], productId:Option[Int])
+GET         /reco/users/:productId           controllers.PersonalizedReco.forProduct(productId:Int)
+
+POST        /actions                         controllers.DataImportController.addActions()

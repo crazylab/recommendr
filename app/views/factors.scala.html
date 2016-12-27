@@ -1,0 +1,24 @@
+@(products: Seq[Seq[Product]], weights: Array[Double],userId:String)(implicit session: Session)
+
+@main("Awesome shop", session.get("userId").getOrElse("")) {
+<form method="POST" action="">
+    <table>
+        <tr><td colspan="@{weights.length+1}">
+            <div class="text-right factor_save" style="width: 100%">
+                <input type="submit" value="Save" class="btn">
+            </div>
+        </td></tr>
+
+        <tr>
+    @for(((p, i), w)<-(products zip (0 until products.length) zip weights)) {
+        <td style="border-right: 1px solid black">
+            <input type="text" name="weights[@i]" class="col-md-12 form-control" value="@w"/>
+            <div class="col-md-12" style="width: 300px;">
+        @productGrid(p.map(x => (x.product_id, x.brand, "")),"")
+        </div>
+        </td>
+    }
+        </tr>
+    </table>
+</form>
+}

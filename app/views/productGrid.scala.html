@@ -1,0 +1,15 @@
+@(products: Seq[(String, String, _)], style:String="col-md-3")
+
+@for(a_product <- products) {
+<div class="@style product">
+    <a href="/view/products/@a_product._1">
+        <img src="/assets/img/@{a_product._1}.jpg">
+    </a>
+    <br/>
+    <span>@a_product._2</span>
+    @if(a_product._3 != "") {
+        <span>(@a_product._3)</span>
+    }
+</div>
+}
+

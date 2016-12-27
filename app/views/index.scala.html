@@ -1,0 +1,6 @@
+@(products: Seq[Product], userId:String)
+
+@main("Awesome shop", userId) {
+
+    @productGrid(products.map(x=>(x.product_id, x.brand, "")))
+}

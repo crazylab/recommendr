@@ -1,0 +1,16 @@
+@(products : Seq[Seq[(String, String, _)]])(implicit session: Session)
+
+
+@main("Orders", session.get("userId").getOrElse("")) {
+
+    <div class="col-md-12">
+        <br/>
+        <div class="lead bg-info">Purchase history</div>
+    </div>
+
+    @for(p<-products){
+        <div class="col-md-3">
+        @productGrid(p,"")
+        </div>
+    }
+}

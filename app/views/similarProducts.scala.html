@@ -1,0 +1,14 @@
+@(recUsers: Seq[String])(implicit session: Session)
+
+@main("Similar Users", session.get("userId").getOrElse("")) {
+
+  @for(user <- recUsers) {
+    <div class="col-md-3 product">
+      <a href="/?userId=@user">
+        <img src="/assets/img/user.jpeg">
+      </a>
+      <br/>
+      <span>@user</span>
+    </div>
+  }
+}
